@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormattedMessage, FormattedHTMLMessage, FormattedDate, FormattedTime } from 'react-intl';
+import { FormattedMessage, FormattedHTMLMessage, FormattedRelative ,FormattedDate, FormattedTime } from 'react-intl';
 import {meanBy, round, sortBy} from 'lodash';
 
 import books from '../books.json';
@@ -68,6 +68,11 @@ const BookDetail = ({match}) => {
                   month='2-digit'
                   day='2-digit'
                   value={new Date(review.date)} />
+                <br />
+                <FormattedRelative 
+                  value={new Date(review.date)}
+                  style="numeric"
+                  />
               </p>
             </div>
             <p>{review.body}</p>
