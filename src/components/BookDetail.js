@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, FormattedHTMLMessage, FormattedDate, FormattedTime } from 'react-intl';
 import {meanBy, round, sortBy} from 'lodash';
 
 import books from '../books.json';
@@ -32,13 +32,15 @@ const BookDetail = ({match}) => {
       <h3 className="BookDetail-merchantHeading">Purchase this book from:</h3>
       <div className="BookDetail-merchants">
         {book.merchants.map((merchant) => (
-          <a href={merchant.link} className="Merchant" key={merchant.name}>
+          <a href={merchant.link} target="_blank" className="Merchant" key={merchant.name}>
             <img src={merchant.icon} width="32" height="32" alt={merchant.name}/>
             <strong>{merchant.name}</strong>
             <p>{merchant.price}</p>
           </a>
         ))}
       </div>
+
+      <FormattedHTMLMessage id="detail.window" values={{numMerchants: book.merchants.length}} />
 
       <h2>Reviews</h2>
       <h3>Average Rating: {round(meanBy(book.reviews, (r) => r.rating), 2)} ({book.reviews.length} Reviews)</h3>
@@ -52,7 +54,20 @@ const BookDetail = ({match}) => {
                   name: <strong>{review.name}</strong>,
                   rating: review.rating
                 }}/><br />
-                {new Date(review.date).toLocaleDateString()}
+                {
+                  /**
+                  
+                    <FormattedDate value={new Date(review.date)}
+                      year='2-digit'
+                      month='2-digit'
+                      day='2-digit' />
+                   */
+                }
+                <FormattedTime 
+                  year='2-digit'
+                  month='2-digit'
+                  day='2-digit'
+                  value={new Date(review.date)} />
               </p>
             </div>
             <p>{review.body}</p>
