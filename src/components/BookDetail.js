@@ -14,7 +14,11 @@ const BookDetail = ({match}) => {
         <img src={book.image} width="200" height="275" alt={book.title}/>
         <div className="BookDetail-metaBody">
           <h1>{book.title}</h1>
-          <h3>by {book.author}</h3>
+          <h3>
+            <FormattedMessage id="detail.author" values={{
+              author: book.author
+            }} />
+          </h3>
           <div>
             <input type="checkbox" id="toggle" hidden/>
             <p>{book.description}</p>
@@ -44,7 +48,10 @@ const BookDetail = ({match}) => {
             <div className="Review-meta">
               <img src={review.avatar} alt="Avatar"/>
               <p>
-                <strong>{review.name}</strong> rated it: {review.rating} out of 5 <br />
+                <FormattedMessage id="detail.userRating" values={{
+                  name: <strong>{review.name}</strong>,
+                  rating: review.rating
+                }}/><br />
                 {new Date(review.date).toLocaleDateString()}
               </p>
             </div>
