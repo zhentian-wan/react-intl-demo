@@ -1,3 +1,17 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import { addLocaleData, IntlProvider } from 'react-intl';
+import en from 'react-intl/locale-data/en';
+import fr from 'react-intl/locale-data/fr';
+import es from 'react-intl/locale-data/es';
+
+import { flattenMessages } from './utils';
+import messages from './messages';
+
+import App from './App';
+import './index.css';
+
 if (!window.Intl) {
   require.ensure([
     'intl',
